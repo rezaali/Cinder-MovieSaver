@@ -28,6 +28,7 @@ SOFTWARE.
 #include "cinder/Camera.h"
 #include "cinder/Filesystem.h"
 #include "cinder/app/Window.h"
+#include "cinder/qtime/AvfWriter.h"
 
 #include "glm/glm.hpp"
 
@@ -49,15 +50,13 @@ class MovieSaver {
 	bool isRecording() { return mRecording; }
 	float getProgress() { return mProgress; }
 	float getCurrentTime() { return mCurrentTime; }
-
 	void setTotalFrames( int totalframes ) { mTotalFrames = totalframes; }
 	int getTotalFrames() { return mTotalFrames; }
-
   protected:
 	MovieSaver( const ci::app::WindowRef &window );
 
 	ci::app::WindowRef mWindowRef = nullptr;
-	int mTotalFrames = 120;
+	int mTotalFrames = 600;
 	int mCurrentFrame = 0;
 	float mCurrentTime = 0;
 	float mProgress = 0.0f;
@@ -66,7 +65,7 @@ class MovieSaver {
 	std::string mSaveMovieName;
 	std::string mSaveMovieExtension;
 
-	//qtime::MovieWriterRef mMovieExporter;
+	ci::qtime::MovieWriterRef mMovieExporter;
 };
 } // namespace mov
 } // namespace reza
